@@ -27,9 +27,7 @@ class Settings(BaseSettings):
             password_file: str | None = data.get("POSTGRES_PASSWORD_FILE")  # type: ignore
             password: str | None = data.get("POSTGRES_PASSWORD")  # type: ignore
             if password_file is None and password is None:
-                raise ValueError(
-                    "At least one of POSTGRES_PASSWORD_FILE and POSTGRES_PASSWORD must be set."
-                )
+                raise ValueError("Set POSTGRES_PASSWORD or POSTGRES_PASSWORD_FILE.")
         return data  # type: ignore
 
     @field_validator("POSTGRES_PASSWORD_FILE", mode="before")
